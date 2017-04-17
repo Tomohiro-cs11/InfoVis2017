@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Task1</title>
+</head>
+<body>
+<script src="Vec3.js"></script>
+<form name="form1">
+値を入力してください。<br>
+Number1：<input type="text" name="num1" value=""> Number2：<input type="text" name="num2" value=""> Number3：<input type="text" name="num3" value=""><br>
+最小値：<input type="text" name="txt1" value=""><br>
+中間値：<input type="text" name="txt2" value=""><br>
+最大値：<input type="text" name="txt3" value=""><br>
+<input type="button" value="計算" onclick="calculate()"><br>
+<input type="button" value="結果をクリア" onclick="clr()"><br>
+</form>
+<script>
+function calculate(){
+
+  var str1=document.form1.num1.value, str2=document.form1.num2.value, str3=document.form1.num3.value;
+  var n1,n2,n3;
+  
+  n1 = Number(str1);
+  n2 = Number(str2);
+  n3 = Number(str3);
+  
+  document.form1.txt1.value=min(n1,n2,n3);
+  document.form1.txt2.value=mid(n1,n2,n3);
+  document.form1.txt3.value=max(n1,n2,n3);
+
+}
+
+function clr(){
+
+  document.form1.num1.value="";
+  document.form1.num2.value="";
+  document.form1.num3.value="";
+  document.form1.txt1.value="";
+  document.form1.txt2.value="";
+  document.form1.txt3.value="";
+
+}
+</script>
+</body>
+</html>

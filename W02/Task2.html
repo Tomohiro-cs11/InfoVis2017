@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Task2</title>
+</head>
+<body>
+<script src="Vec3_Task2.js"></script>
+<form name="form2">
+座標を入力してください。<br>
+頂点1:
+x1：<input type="number" name="x1" value=""> y1：<input type="number" name="y1" value=""> z1：<input type="number" name="z1" value=""><br>
+頂点2:
+x2：<input type="number" name="x2" value=""> y2：<input type="number" name="y2" value=""> z2：<input type="number" name="z2" value=""><br>
+頂点3:
+x3：<input type="number" name="x3" value=""> y3：<input type="number" name="y3" value=""> z3：<input type="number" name="z3" value=""><br>
+面積：<input type="number" name="S" value=""><br>
+<input type="button" value="計算" onclick="calculate()"><br>
+<input type="button" value="結果をクリア" onclick="clr()"><br>
+</form>
+<script>
+function calculate(){
+
+  var x1=document.form2.x1.value, y1=document.form2.y1.value, z1=document.form2.z1.value;
+  var x2=document.form2.x2.value, y2=document.form2.y2.value, z2=document.form2.z2.value;
+  var x3=document.form2.x3.value, y3=document.form2.y3.value, z3=document.form2.z3.value;
+  
+  var v1 = new Vec3_Task2( x1, y1, z1 );
+  var v2 = new Vec3_Task2( x2, y2, z2 );
+  var v3 = new Vec3_Task2( x3, y3, z3 )
+  
+  document.form2.S.value=AreaOfTriangle(v1,v2,v3);
+
+}
+
+function clr(){
+
+  document.form2.x1.value="";
+  document.form2.y1.value="";
+  document.form2.z1.value="";
+  document.form2.x2.value="";
+  document.form2.y2.value="";
+  document.form2.z2.value="";
+  document.form2.x3.value="";
+  document.form2.y3.value="";
+  document.form2.z3.value="";
+  document.form2.S.value="";
+
+}
+</script>
+</body>
+</html>
