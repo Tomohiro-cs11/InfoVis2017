@@ -1,3 +1,4 @@
+document.write("<script src='http://mrdoob.github.io/three.js/build/three.min.js'></script>");
 function main()
 {
     var width = 500;
