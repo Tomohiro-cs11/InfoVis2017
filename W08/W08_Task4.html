@@ -4,16 +4,16 @@
   </head>
   <body>
     <script src="three.min.js"></script>
-
     <script type="x-shader/x-vertex" id="Cook_Torrance.vert">
       varying vec3 point_color;
       varying vec4 point_position;
       varying vec3 normal_vector;
       uniform vec3 light_position;
+      uniform vec3 C_color;
       
       void main()
       {
-      point_color = color;
+      point_color = C_color;
       point_position = modelViewMatrix * vec4( position, 1.0 );
       normal_vector = normalMatrix * normal;
       gl_Position = projectionMatrix * point_position;
@@ -26,33 +26,37 @@
       varying vec3 normal_vector;
       uniform vec3 light_position;
       
-      vec3 Cook-TorranceReflection( vec3 C, vec3 L, vec3 N , vec3 V)
+      
+      vec3 Cook_TorranceReflection( vec3 C, vec3 L, vec3 N , vec3 V)
       {
-      float ka = 0.3;
-      float kd = 0.5;
-      float ks = 0.8;
-      float n = 50.0;
-      float n1 = 0.33;
+      
+      float ka = 0.6;
+      float kd = 1.0;
+      float ks = 0.9;
+      float n = 5.0;
+      float n_n = 0.34;
       vec3 H = normalize( L + V );
       float dd = max( dot( N, L ), 0.0 );
-      float ds = pow( max( dot( H, N ), 0.0 ), n );
+      //float ds = pow( max( dot( H, V ), 0.0 ), n );
       float NH = dot(N, H);
       float VH = dot(V, H);
       float NV = dot(N, V);
       float NL = dot(N, L);
       
+      float m = 100.0*NV*NL;//面の粗さ
+      
       float alpha = acos(NH);
       
       // D:ベックマン分布関数
-      float D = (1.0/(4*m*m*NH*NH*NH*NH))*exp((NH*NH-1.0)/(m*m*NH*NH));
+      float D = (1.0/(4.0*m*m*NH*NH*NH*NH))*exp((NH*NH-1.0)/(m*m*NH*NH));
       
       // G:幾何減衰
       float G = min(1.0, min((2.0*NH*NV)/VH, (2.0*NH*NL)/VH));
       
       // F:フレネル項
       float c = VH;
-      float g = sqrt(n1*n1+c*c-1);
-      float F = ((g-c)*(g-c)/((g+c)*(g+c)))*(1+(c*(g+c)-1)*(c*(g+c)-1)/((c*(g-c)-1)*(c*(g-c)-1)));
+      float g = sqrt(n_n*n_n+c*c-1.0);
+      float F = ((g-c)*(g-c)/((g+c)*(g+c)))*(1.0+(c*(g+c)-1.0)*(c*(g+c)-1.0)/((c*(g-c)-1.0)*(c*(g-c)-1.0)));
       
       float ds = D*G*F/NV;
       
@@ -68,7 +72,7 @@
       vec3 L = normalize( light_position - point_position.xyz );
       vec3 N = normalize( normal_vector );
       vec3 V = normalize( cameraPosition - point_position.xyz);
-      vec3 shaded_color = Cook-TorranceReflection(C, L, N ,V);
+      vec3 shaded_color = Cook_TorranceReflection(C, L, N ,V);
       gl_FragColor = vec4( shaded_color, 1.0 );
       }
     </script>

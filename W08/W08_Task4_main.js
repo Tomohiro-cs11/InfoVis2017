@@ -11,7 +11,7 @@ function main()
     var near = 1;
     var far = 1000;
     var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-    camera.position.set( 0, 0, 5 );
+    camera.position.set( 0, 0, 6 );
     scene.add( camera );
 
     var light = new THREE.PointLight();
@@ -29,11 +29,13 @@ function main()
         vertexShader: document.getElementById('Cook_Torrance.vert').text,
         fragmentShader: document.getElementById('Cook_Torrance.frag').text,
         uniforms: {
-            light_position: { type: 'v3', value: light.position }
+            light_position: { type: 'v3', value: light.position },
+            C_color :{ type: 'v3', value: new THREE.Vector3( 230.0/255.0, 180.0/255.0, 34.0/255.0 ) }
         }
     });
-
-    var torus_knot = new THREE.Mesh( geometry, material );                                    
+    
+    var torus_knot = new THREE.Mesh( geometry, material );
+    //torus_knot.scale.set(0.5,0.5,0.5); 
     scene.add( torus_knot );
 
 
