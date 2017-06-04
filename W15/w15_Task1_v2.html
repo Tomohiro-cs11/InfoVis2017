@@ -7,35 +7,35 @@
         <div id="display2" style="width: 10%; float: left;"></div>
         <div id="controller" style="width:30%; float:left;">
       <label id="label" style="font-family:Arial;"></label>
-      isovalue‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢B’¼Úƒ{ƒbƒNƒX“à‚©‚çw’è‚·‚é‚±‚Æ‚à‚Å‚«‚Ü‚·B(0‚©‚ç255‚Ü‚Å)
+      isovalueã‚’è¨­å®šã—ã¦ãã ã•ã„ã€‚ç›´æ¥ãƒœãƒƒã‚¯ã‚¹å†…ã‹ã‚‰æŒ‡å®šã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã™ã€‚(0ã‹ã‚‰255ã¾ã§)
       <input type="range" min="0" max="1" step="0.01" value="0.5" id="isovalue" 
                                          oninput="display_isovalue(this.value)" onchange="display_isovalue(this.value)"/><br>
       isovalue: <input type="number" value="128" id="numberOfIsovalue"
                                           oninput="change_BoxValue(this.value)" onchange="change_BoxValue(this.value)"/>
       <button id="change-isovalue-button" onclick="setvalue()" style="font-family=Arial;"> Apply</button>
       <br>
-      <input type="radio" name="Q1" checked="checked" onclick="change_shader()" id="Lambert" > ƒ‰ƒ“ƒo[ƒg”½Ë<br>
-      <input type="radio" name="Q1" onclick="change_shader()" id="Phong"> ƒtƒHƒ“‹¾–Ê”½Ë<br>
-      <input type="radio" name="Q1" onclick="change_shader()" id="Blinn"> Blinn-Phong ‹¾–Ê”½Ëƒ‚ƒfƒ‹ <br>
-      <input type="radio" name="Q1" onclick="change_shader()" id="Cook"> Cook-Torrance ‹¾–Ê”½Ëƒ‚ƒfƒ‹ <br>
+      <input type="radio" name="Q1" checked="checked" onclick="change_shader()" id="Lambert" > ãƒ©ãƒ³ãƒãƒ¼ãƒˆåå°„<br>
+      <input type="radio" name="Q1" onclick="change_shader()" id="Phong"> ãƒ•ã‚©ãƒ³é¡é¢åå°„<br>
+      <input type="radio" name="Q1" onclick="change_shader()" id="Blinn"> Blinn-Phong é¡é¢åå°„ãƒ¢ãƒ‡ãƒ« <br>
+      <input type="radio" name="Q1" onclick="change_shader()" id="Cook"> Cook-Torrance é¡é¢åå°„ãƒ¢ãƒ‡ãƒ« <br>
       <br>
       <br>
-      ƒJƒ‰[ƒ}ƒbƒv‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢.<br>
+      ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ—ã‚’é¸ã‚“ã§ãã ã•ã„.<br>
       <input type="radio" name="Q2" onclick="change_ColorMap()" id="red" checked="checked"> Red <br>
       <input type="radio" name="Q2" onclick="change_ColorMap()" id="green"> Green <br>
       <input type="radio" name="Q2" onclick="change_ColorMap()" id="blue"> Blue <br>
-      <input type="radio" name="Q2" onclick="change_ColorMap()" id="rainbow"> ©•ª‚Å’²®‚·‚é (0‚©‚ç255‚Ü‚Å)<br>
+      <input type="radio" name="Q2" onclick="change_ColorMap()" id="rainbow"> è‡ªåˆ†ã§èª¿æ•´ã™ã‚‹ (0ã‹ã‚‰255ã¾ã§)<br>
       <input type="range" min="0" max="1" step="0.01" value="0.5" id="redvalue" disabled = "true"
                                          oninput="display_RGBvalue()" onchange="display_RGBvalue()"/><br>
-      redF <input type="number" value="128" id="numberOfRedvalue" disabled = "true"
+      redï¼š <input type="number" value="128" id="numberOfRedvalue" disabled = "true"
                                           oninput="change_ColorBoxValue()" onchange="change_ColorValue()"/>
       <input type="range" min="0" max="1" step="0.01" value="0.5" id="greenvalue" disabled = "true"
                                          oninput="display_RGBvalue()" onchange="display_RGBvalue()"/><br>
-      greenF <input type="number" value="128" id="numberOfGreenvalue" disabled = "true"
+      greenï¼š <input type="number" value="128" id="numberOfGreenvalue" disabled = "true"
                                           oninput="change_ColorBoxValue()" onchange="change_ColorValue()"/>
       <input type="range" min="0" max="1" step="0.01" value="0.5" id="bluevalue" disabled = "true"
                                          oninput="display_RGBvalue()" onchange="display_RGBvalue()"/><br>
-      redF <input type="number" value="128" id="numberOfBluevalue" disabled = "true"
+      redï¼š <input type="number" value="128" id="numberOfBluevalue" disabled = "true"
                                           oninput="change_ColorBoxValue()" onchange="change_ColorValue()"/><br>
       <button id="change-colorvalue-button" onclick="setCOLOR()" style="font-family=Arial;"> Apply</button>
         </div>
@@ -231,17 +231,17 @@
       float NV = dot(N, V);
       float NL = dot(N, L);
       
-      float m = 100.0*NV*NL;//–Ê‚Ì‘e‚³
+      float m = 100.0*NV*NL;//é¢ã®ç²—ã•
       
       float alpha = acos(NH);
       
-      // D:ƒxƒbƒNƒ}ƒ“•ª•zŠÖ”
+      // D:ãƒ™ãƒƒã‚¯ãƒãƒ³åˆ†å¸ƒé–¢æ•°
       float D = (1.0/(4.0*m*m*NH*NH*NH*NH))*exp((NH*NH-1.0)/(m*m*NH*NH));
       
-      // G:Šô‰½Œ¸Š
+      // G:å¹¾ä½•æ¸›è¡°
       float G = min(1.0, min((2.0*NH*NV)/VH, (2.0*NH*NL)/VH));
       
-      // F:ƒtƒŒƒlƒ‹€
+      // F:ãƒ•ãƒ¬ãƒãƒ«é …
       float c = VH;
       float g = sqrt(n_n*n_n+c*c-1.0);
       float F = ((g-c)*(g-c)/((g+c)*(g+c)))*(1.0+(c*(g+c)-1.0)*(c*(g+c)-1.0)/((c*(g-c)-1.0)*(c*(g-c)-1.0)));
@@ -274,9 +274,9 @@
       var isovalue_slider = document.getElementById("isovalue");
 
 
-      //ƒCƒxƒ“ƒgƒLƒƒƒvƒ`ƒƒƒŠƒ“ƒO‚Åˆ—‚·‚é‚È‚çtrueAƒCƒxƒ“ƒgƒoƒuƒŠƒ“ƒO‚Åˆ—‚·‚é‚È‚çfalse
+      //ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ—ãƒãƒ£ãƒªãƒ³ã‚°ã§å‡¦ç†ã™ã‚‹ãªã‚‰trueã€ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ–ãƒªãƒ³ã‚°ã§å‡¦ç†ã™ã‚‹ãªã‚‰false
       
-      //slider’l‚ğƒGƒr‚É”½‰f
+      //sliderå€¤ã‚’ã‚¨ãƒ“ã«åæ˜ 
       function setvalue(){
         var iso_box = document.getElementById("numberOfIsovalue");
         
@@ -287,8 +287,8 @@
         }
       }
       
-      //isovalue‚Ì’l‚ğ•\¦‚·‚éƒƒ\ƒbƒh
-      //oninput‚Æonchange‚ª‚ ‚é‚¯‚Ç‚Ç‚¿‚ç‚©“®‚©‚È‚¢‰Â”\«‚ª‚ ‚é‚Ì‚Å—¼•ûw’è‚·‚é‚ç‚µ‚¢
+      //isovalueã®å€¤ã‚’è¡¨ç¤ºã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
+      //oninputã¨onchangeãŒã‚ã‚‹ã‘ã©ã©ã¡ã‚‰ã‹å‹•ã‹ãªã„å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ä¸¡æ–¹æŒ‡å®šã™ã‚‹ã‚‰ã—ã„
       function display_isovalue(value){
         var isovalue = parseInt(value*255);
         var iso_box = document.getElementById("numberOfIsovalue");
@@ -410,7 +410,7 @@
       
        
       
-      //ƒXƒŠ[ƒvŠÖ”E•b‚Åw’è
+      //ã‚¹ãƒªãƒ¼ãƒ—é–¢æ•°ãƒ»ç§’ã§æŒ‡å®š
       /*function sleep(time){
         const d1 = new Date();
         while (true) {
