@@ -322,7 +322,7 @@
           shader_frag = 'Cook_Torrance.frag';
           main.set_shader(shader_vert, shader_frag);
         }
-        //main.update_plane_color();
+        main.update_plane_color(shader_vert, shader_frag);
       }
       
       function change_ColorMap(){
@@ -347,6 +347,7 @@
            var R_value = document.getElementById("redvalue").value;
            var G_value = document.getElementById("greenvalue").value;
            var B_value = document.getElementById("bluevalue").value;
+           main.set_any_color( R_value , G_value , B_value );
            main.set_plane_any_color(R_value, G_value, B_value);
         }
         //main.update_plane_color();

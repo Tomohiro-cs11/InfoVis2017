@@ -58,6 +58,9 @@ var main = (function() {
         var geometry = new THREE.PlaneGeometry(30, 30);
         var material = this.surfaces.material;
         this.mesh = new THREE.Mesh( geometry, material );
+
+	this.plane_isovalue = this.isovalue;
+	this.plane_rainbow_color = this.rainbow_color;
         
         scene2.add(this.mesh);
         
@@ -85,7 +88,7 @@ var main = (function() {
     }
     
     change_surfaces.set_surfaces = function( value ) {
-        this.isovalue = parseInt(value*255)
+        this.isovalue = parseInt(value*255);
         var surfaces = Isosurfaces( this.volume, this.isovalue , this.vert, this.frag, this.color_name, this.rainbow_color );
         this.surfaces.material = surfaces.material;
     }
@@ -111,20 +114,22 @@ var main = (function() {
     }
     
     change_surfaces.set_plane_color = function(isovalue){
-        var material = calculate_material(isovalue, this.vert, this.frag, this.color_name, this.rainbow_color);
+	this.plane_isovalue = isovalue;
+        var material = calculate_material(this.plane_isovalue, this.vert, this.frag, this.color_name, this.rainbow_color);
         this.mesh.material = material;
     }
     
     change_surfaces.set_plane_any_color = function(red_value , green_value , blue_value){
-        rainbow_color = new THREE.Color( red_value, green_value, blue_value);
-        var material = calculate_material(this.isovalue, this.vert, this.frag, this.color_name, rainbow_color);
+        this.plane_rainbow_color = new THREE.Color( red_value, green_value, blue_value);
+        var material = calculate_material(this.plane_isovalue, this.vert, this.frag, this.color_name, this.plane_rainbow_color);
         this.mesh.material = material;
     }
     
-    change_surfaces.update_plane_color = function(){
-        var material = calculate_material(this.isovalue, this.vert, this.frag, this.color_name, this.rainbow_color);
+    change_surfaces.update_plane_color = function(vert, frag){
+        var material = calculate_material(this.plane_isovalue, vert, frag, this.color_name, this.plane_rainbow_color);
         this.mesh.material = material;
     }
+
     
     return main;
 })();
