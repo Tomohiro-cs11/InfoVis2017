@@ -103,6 +103,7 @@ var main = (function() {
     change_surfaces.set_color = function( color_name ){
         this.color_name = color_name;
         this.rainbow_color = null;
+	this.plane_rainbow_color = null;
         var surfaces = Isosurfaces( this.volume, this.isovalue, this.vert, this.frag, this.color_name, this.rainbow_color);
         this.surfaces.material = surfaces.material;
     }
